@@ -1,28 +1,28 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <TheLayoutLeft/>
+    <TheTitle/>
+    <TheFeature/>
+    <TheLayoutRight/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import TheLayoutLeft from "./components/layout/TheLayoutLeft.vue"
+import TheTitle from "./components/layout/TheTitle.vue"
+import TheFeature from "./components/layout/TheFeature.vue"
+import TheLayoutRight from "./components/layout/TheLayoutRight.vue"
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    TheLayoutLeft,TheTitle,TheFeature,TheLayoutRight
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import url(../src/assets/fontawesome-5.15.1/css/all.css);
+
 </style>

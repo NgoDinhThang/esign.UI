@@ -1,0 +1,75 @@
+.feature {
+    padding-left: 16px !important;
+    height: 48px;
+    margin-left: 240px;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+}
+
+.button {
+    margin-right: 8px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    align-content: space-between;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 24px;
+    padding-right: 8px;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.feature-create-request {
+    background-color: #038df7;
+    background-image: url(https://testesignwebsiteadminrd.misa.com.vn/icon/1x/Group%2016833.png);
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: 2px 6px;
+}
+
+.feature-denied-request {
+    background-color: rgb(228, 32, 32);
+}
+
+.feature-accept-request {
+    background-color: #038df7;
+}
+
+.feature-create-request.feature-accept-request:hover {
+    background-color: #0168D9;
+}
+
+.feature-button button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.feature-button-refresh {
+    background-image: url(https://testesignwebsiteadminrd.misa.com.vn/icon/1x/ico-sync-1.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.feature-button-setting {
+    background-image: url(https://testesignwebsiteadminrd.misa.com.vn/icon/1x/ico-setting1.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.feature-button-logout {
+    background-image: url(https://testesignwebsiteadminrd.misa.com.vn/icon/1x/ico-export1.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.feature-button {
+    margin-left: 63.3%;
+}

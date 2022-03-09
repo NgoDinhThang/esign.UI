@@ -1,0 +1,24 @@
+input {
+    width: 248px;
+    height: 32px;
+    border-radius: 5px;
+    outline: #ccc;
+    border: 1px solid #DDDDDD;
+    padding-left: 35px;
+    font-size: 13px;
+}
+
+.search-input i {
+    position: absolute;
+    margin-top: 22px;
+    margin-left: 13px;
+}
+
+::placeholder {
+    font-style: italic;
+    padding-left: 10px;
+}
+
+input:focus::placeholder {
+    color: #268FFB;
+}

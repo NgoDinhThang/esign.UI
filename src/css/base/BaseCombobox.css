@@ -1,0 +1,42 @@
+.m-combobox {
+    height: 30px;
+    width: 120px;
+    position: relative;
+}
+
+.m-combobox-value-option {
+    position: absolute;
+    width: 100%;
+    border: 1px solid rgb(224, 224, 224);
+    margin-top: -3px;
+    background-color: white;
+}
+
+.m-combobox-value-option div {
+    border-bottom: 0.5px solid rgb(224, 224, 224);
+    padding-left: 12px;
+    min-height: 30px;
+    line-height: 30px;
+}
+
+.m-combobox-value-option div:hover {
+    cursor: pointer;
+    background-color: #A286BF;
+    color: white;
+}
+
+.m-combobox-value-default {
+    border: 1px solid rgb(224, 224, 224);
+    background-color: white;
+    background-image: url(https://testesignwebsiteadminrd.misa.com.vn/icon/1x/ico-expan-down.png);
+    background-repeat: no-repeat;
+    background-position: 100px center;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 30px;
+    padding-left: 12px;
+}
+
+.m-combobox-value-default:hover:hover {
+    cursor: pointer;
+}
