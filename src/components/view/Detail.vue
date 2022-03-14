@@ -1,12 +1,15 @@
 <template>
 <div class="detail-file">
-    oke
+    <DetailTitle/>
 </div>
     
 </template>
 <script>
+import DetailTitle from "../layout/TheDetailTitle.vue"
 export default ({
-
+    components:{
+        DetailTitle
+    }
 })
 </script>
 <style scoped>
