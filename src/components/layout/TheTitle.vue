@@ -1,7 +1,7 @@
 <template>
     <div class="title">
         <div class="title-text">
-            QUẢN LÝ YÊU CẦU
+            HỒ SƠ CHỜ XỬ LÝ
         </div>
         <div class="title-search">
             <Search/>

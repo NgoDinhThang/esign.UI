@@ -1,7 +1,8 @@
 .m-combobox {
     height: 30px;
-    width: 120px;
     position: relative;
+    z-index: 10;
+    width: 120px;
 }
 
 .m-combobox-value-option {
@@ -34,7 +35,11 @@
     border-radius: 5px;
     font-size: 13px;
     line-height: 30px;
+    height: 30px !important;
     padding-left: 12px;
+    padding-right: 20px;
+    text-overflow: ellipsis !important;
+    overflow: hidden;
 }
 
 .m-combobox-value-default:hover:hover {

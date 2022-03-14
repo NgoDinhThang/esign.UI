@@ -1,11 +1,11 @@
 <template>
     <div class="m-combobox">
         <div class="m-combobox-value-default" @click="ShowOption()">
-            Tất cả
+            {{defaultValue}}
         </div>
         <div class="m-combobox-value-option" v-show="isShow" >
             <div v-for="value in values " :key="value" @click="SelectValue()" >
-                <span>{{value}}</span>
+                {{value}}
             </div>
         </div>
     </div>
@@ -14,7 +14,7 @@
 
 export default ({
     props:[
-        "values","state"
+        "values","state","defaultValue"
     ],
     methods: {
         ShowOption(){
@@ -37,4 +37,4 @@ export default ({
 
 <style scoped>
 @import url(../../css/base/BaseCombobox.css);
-</style>>
+</style>
