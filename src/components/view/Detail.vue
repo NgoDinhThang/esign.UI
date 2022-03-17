@@ -1,6 +1,6 @@
 <template>
 <div class="detail-file">
-    <DetailTitle/>
+    <DetailTitle :detailRequest= "detailRequest" @previous= "previous()"/>
 </div>
     
 </template>
@@ -9,6 +9,14 @@ import DetailTitle from "../layout/TheDetailTitle.vue"
 export default ({
     components:{
         DetailTitle
+    },
+    props:
+    ["detailRequest"],
+    methods:{
+        previous(){
+            console.log("detailtitle")
+            this.$emit("previous",null)
+        }
     }
 })
 </script>

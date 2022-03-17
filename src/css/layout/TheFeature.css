@@ -72,6 +72,11 @@
     margin-right: 15px;
 }
 
+.feature-button button:focus{
+    outline: unset;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+
 .feature-button-refresh {
     background-image: url(https://testesignwebsiteadminrd.misa.com.vn/icon/1x/ico-sync-1.png);
     background-repeat: no-repeat;

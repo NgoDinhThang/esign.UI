@@ -42,9 +42,54 @@
     align-items: center;
     border: 1px solid #E1E1E1;
     padding: 12px;
-    position: absolute;
+    position: fixed !important;
     right: 10px;
     left: 255px;
-    bottom: 5px;
+    bottom: 10px;
     font-size: 13px;
+}
+.footer-paging button {
+    width: 33px;
+    height: 33px;
+    border-radius: 5px;
+    border: unset;
+    margin-left: 15px;
+    color: rgba(7, 7, 7, 0.623);
+
+}
+.footer-paging button:focus{
+    outline:unset
+}
+.footer-paging button:hover{
+    cursor: pointer;
+}
+.footer-paging{
+    min-width: 150px;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 25px ;
+    
+}
+.footer-paging-previous{
+    background-image: url(https://testesignwebsiteadminrd.misa.com.vn/icon/1x/ico-right.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.footer-paging-next{
+    background-image: url(https://testesignwebsiteadminrd.misa.com.vn/icon/1x/ico-right2.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.footer-paging-page{
+    display: flex;
+}
+.footer-paging-pageindex{
+    border-radius: 50% !important;
+    border: 1px solid rgb(222, 226, 230) !important;
+    background-color: unset;
+}
+.footer-paging-pageindex:hover{
+    background-color: #A286BF !important;
+    border: 1px solid #A286BF !important;
+    color: white !important;
 }

@@ -1,6 +1,6 @@
 <template>
-    <div class="m-combobox">
-        <div class="m-combobox-value-default" @click="ShowOption()">
+    <div class="m-combobox"  >
+        <div class="m-combobox-value-default" @click="ShowOption()" >
             {{defaultValue}}
         </div>
         <div class="m-combobox-value-option" v-show="isShow" >
@@ -16,9 +16,25 @@ export default ({
     props:[
         "values","state","defaultValue"
     ],
+    mounted(){
+
+
+    
+},
+      
     methods: {
         ShowOption(){
             this.isShow = !this.isShow
+            var me = this
+            var comboboxs = document.getElementsByClassName("m-combobox-value-option")
+            for (let i = 0; i < comboboxs.length; i++) {
+                if(i != me.state){
+                    comboboxs[i].style.display = "none"
+                }
+                
+            }
+
+            
         },
         SelectValue(){
             var me = this
@@ -28,7 +44,7 @@ export default ({
     },
     data() {
         return {
-            isShow:false
+            isShow:false,
             
         }
     },

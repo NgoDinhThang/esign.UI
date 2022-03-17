@@ -1,7 +1,7 @@
 <template>
     <div class="feature">
         <div style="display:flex;">
-            <button class="feature-create-request button accept isAccepted" disabled>
+            <button class="feature-create-request button accept isAccepted" disabled style="padding-right:20px !important;">
                 Bàn giao
             </button>
             <button class="feature-accept-request button isAccepted accept" disabled style="padding-left:12px;">
@@ -19,7 +19,7 @@
         
 
         <div class="feature-button" >
-            <button class="feature-button-refresh">
+            <button class="feature-button-refresh" @click="refresh()">
 
             </button>
             <button class="feature-button-setting">
@@ -31,6 +31,16 @@
         </div>
     </div>
 </template>
+<script>
+export default ({
+    methods:{
+        refresh(){
+            this.$emit("refresh",null)
+        }
+    }
+})
+</script>
+
 <style scoped>
 @import url(../../css/layout/TheFeature.css);
 </style>
