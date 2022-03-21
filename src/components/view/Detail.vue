@@ -8,7 +8,8 @@
 <script>
 import DetailTitle from "../layout/TheDetailTitle.vue"
 // import DetailContentPO from "../layout/TheDetailContentPOrgnization.vue"
-import DetailContentOrg from "../layout/TheDetailContentOrgnization.vue"
+// import DetailContentOrg from "../layout/TheDetailContentPersonal.vue"
+import DetailContentOrg from "../layout/TheDetailOrgnization.vue"
 export default ({
     components:{
         DetailTitle,DetailContentOrg

@@ -6,7 +6,7 @@
             <div class="detail-content-cerregist-postfile">
                 Tải file lên
                 <div class="input" style="margin-right: 40px;">
-                    <inputFile :withInputFile="500" :heightInputFile="32" :titleInputFile= "titleInputFile[0]" :indexFile="0"/>
+                    <inputFile :withInputFile="500" :heightInputFile="47" :titleInputFile= "titleInputFile[0]" :indexFile="0"/>
                 </div>
                 
             </div>
@@ -20,53 +20,87 @@
                 </div>
             </div>
             <div class="detail-content-hspl-info">
-                <div style="width: 50%;border-right: 1px solid #ccc; display:flex">
+                <div style="width: 50%;border-right: 1px solid #ccc;">
                     <div class="detail-content-hspl-info-orgnization">
-                    <h6>Cá nhân</h6>
+                    <h6>Tổ Chức</h6>
                     <div class="" style="font-size: 13px;margin-top:20px">
                         <div class="detail-content-hspl-detail" >
                             <span>Giấy chứng thực: <span style="color:red">*</span></span>
-                            <comboboxDetail v-bind:withCombobox="370" :bgrPosition="342" :withOption="375" :state="1"  :values= "value_gct"  :defaultValue= "defaultValue[1]"/>
+                            <comboboxDetail v-bind:withCombobox="390" :bgrPosition="352" :state="1" :values= "value_gct" :defaultValue= "defaultValue[1]"/>
+                        </div>
+                        <div class="detail-content-hspl-detail" >
+                            <span>Ảnh chứng thực: <span style="color:red">*</span></span>
+                            <inputFile :withInputFile="390" :heightInputFile="32" :titleInputFile= "titleInputFile[1]" :indexFile="1" />
+                        </div>
+                        <div class="detail-content-hspl-detail" >
+                            <span>Mã số thuế: <span style="color:red">*</span></span>
+                            <input type="text" class="taxcode" placeholder="Nhập mã số thuế hoặc mã QHNS" >
+                        </div>
+                        <div class="detail-content-hspl-detail" >
+                            <span>Mã số thuế: <span style="color:red">*</span></span>
+                            <textarea class="text-area"></textarea>
+                        </div>
+
+                        <div class="detail-content-hspl-detail" >
+                            <span>Tỉnh/thành phố: <span style="color:red">*</span></span>
+                            <comboboxDetail v-bind:withCombobox="390" :bgrPosition="352" :state="2" :values= "value_tp" :defaultValue= "defaultValue[2]"/>
+                        </div>
+
+                        <div class="detail-content-hspl-detail" >
+                            <span>Quận/huyện: <span style="color:red">*</span></span>
+                            <comboboxDetail v-bind:withCombobox="390" :bgrPosition="352" :state="3" :values= "value_tp" :defaultValue= "defaultValue[3]"/>
+                        </div>
+
+                        <div class="detail-content-hspl-detail" >
+                            <span>Địa chỉ: <span style="color:red">*</span></span>
+                            <input type="text" class="taxcode" placeholder="" value="Chọn quận/huyện, Chọn tỉnh/thành phố, Việt Nam" >
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+                </div>
+                <div class="detail-content-hepl-info-owner" style="font-size:13px">
+                        <h6 style="width:200px">Người Đại Diện</h6>
+                        <div class="" style="margin-top:20px">
+                            <div class="detail-content-hspl-detail" >
+                            <span>Giấy chứng thực: <span style="color:red">*</span></span>
+                            <comboboxDetail v-bind:withCombobox="365" :bgrPosition="340" :state="4" :values= "value_gct_right" :defaultValue= "defaultValue[4]" :withOption="365"/>
                         </div>
                         <div class="detail-content-hspl-detail" >
                             <span>Ảnh chứng thực </span>
                             <div class="child">
                                 Mặt trước
-                                <inputFile :withInputFile="180" :heightInputFile="28" :titleInputFile= "titleInputFile[1]" style="margin-top:4px" :indexFile="1"/>
+                                <inputFile :withInputFile="177" :heightInputFile="28" :titleInputFile= "titleInputFile[1]" style="margin-top:4px" :indexFile="2"/>
                             </div>
 
                              <div class="child" style="margin-left:10px">
                                 Mặt sau
-                                <inputFile :withInputFile="180" :heightInputFile="28" :titleInputFile= "titleInputFile[1]" style="margin-top:4px" :indexFile="2"/>
+                                <inputFile :withInputFile="177" :heightInputFile="28" :titleInputFile= "titleInputFile[1]" style="margin-top:4px" :indexFile="3"/>
                             </div>
                         </div>
-                        <div class="detail-content-hspl-detail" >
-                            <span>Họ và tên: <span style="color:red">*</span></span>
-                            <input type="text" class="taxcode" placeholder="Nhập họ và tên" style="width:370px" >
-                        </div>
-                        <div class="detail-content-hspl-detail" >
+                        <div class="detail-content-hspl-detail" style="margin-top:4px" >
                             <span>Số hiệu giấy tờ: <span style="color:red">*</span></span>
-                            <input type="text" class="taxcode" placeholder="Nhập số hiệu giấy tờ" style="width:370px" >
+                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập số hiệu giấy tờ" >
                         </div>
 
-                        <div class="detail-content-hspl-detail"  >
+                        <div class="detail-content-hspl-detail" >
                             <span>Ngày cấp: <span style="color:red">*</span></span>
-                            <input type="date" class="input-date"  style="width:370px" >
+                            <input type="date" class="input-date"  >
                         </div>
 
                         <div class="detail-content-hspl-detail" >
                             <span>Có giá trị đến <span style="color:red">*</span></span>
-                            <input type="date" class="input-date" style="width:370px"  >
+                            <input type="date" class="input-date"  >
                         </div>
-                        
 
-                        
-                    </div>
+                        <div class="detail-content-hspl-detail"  >
+                            <span>Họ và tên: <span style="color:red">*</span></span>
+                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập họ tên"  >
+                        </div>
 
-                    </div>
-                <div class="detail-content-hepl-info-owner" style="font-size:13px">
-
-                        <div class="detail-content-hspl-detail" style="margin-top:50px"  >
+                        <div class="detail-content-hspl-detail"  >
                             <span>Số điện thoại: <span style="color:red">*</span></span>
                             <input type="text" class="taxcode" style="width:365px" placeholder="Nhập số điện thoại" >
                         </div>
@@ -76,26 +110,11 @@
                             <input type="text" class="taxcode" style="width:365px" placeholder="Nhập Email"  >
                         </div>
 
-            
-
-
-                        <div class="detail-content-hspl-detail" >
-                            <span>Tỉnh/thành phố: <span style="color:red">*</span></span>
-                            <comboboxDetail v-bind:withCombobox="365" :bgrPosition="342" :state="2" :values= "value_tp" :defaultValue= "defaultValue[2]"/>
+                        <div class="detail-content-hspl-detail"  >
+                            <span>Chức danh: <span style="color:red">*</span></span>
+                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập chức danh"  >
                         </div>
-
-                        <div class="detail-content-hspl-detail" >
-                            <span>Quận/huyện: <span style="color:red">*</span></span>
-                            <comboboxDetail v-bind:withCombobox="365" :bgrPosition="342" :state="3" :values= "value_tp" :defaultValue= "defaultValue[3]"/>
-                        </div>
-
-                        <div class="detail-content-hspl-detail" >
-                            <span>Địa chỉ: <span style="color:red">*</span></span>
-                            <textarea class="text-area" style="width:365px" ></textarea>
-                        </div>
-
                     </div>
-                    
                         
 
 
@@ -188,12 +207,14 @@ export default ({
             values_lhs:
             ["Bản cứng công chứng","Bản mềm"],
             value_gct:
-            ["Chứng minh thư nhân dân","Căn cước công dân","Hộ chiếu"],
+            ["Giấy chứng nhận đăng ký tổ chức","Giấy chứng nhận đầu tư","Quyết định thành lập phòng ban","Quyết định quy định về chức năng,nhiệm vụ,quyền hạn,cơ cấu tổ chức"],
             defaultValue:
-            ["--Chưa xác định--","Chứng minh thư nhân dân","Chọn tỉnh/thành phố","Chọn quận/huyện","Chứng minh nhân dân"],
+            ["--Không xác định--","Giấy chứng nhận đăng ký tổ chức","Chọn tỉnh/thành phố","Chọn quận/huyện","Chứng minh nhân dân"],
             titleInputFile:
             ["Click chọn hoặc kéo thả ảnh vào đây","Click để tải ảnh lên"],
             indexFile:0,
+            value_gct_right:
+            ["Chứng minh thư nhân dân","Thẻ căn cước","Hộ chiếu"]
 
 
         }
