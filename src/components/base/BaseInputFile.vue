@@ -4,7 +4,11 @@
         <div class="input-file-icon">
             {{titleInputFile}}
         </div>
-        <input type="file" class="m-file-attach" >
+        <input type="file" class="m-file-attach" @change="onChangeInputFile" >
+
+        <div id="preview">
+            <img v-if="url" :src="url" v-show="isPreviewShow" />
+        </div>
         
     </div>
 </template>
@@ -15,6 +19,17 @@ export default {
     methods:{
         MClick(){
             document.getElementsByClassName("m-file-attach")[this.indexFile].click()
+        },
+        onChangeInputFile(){
+            const file = document.getElementsByClassName("m-file-attach")[this.indexFile].files[0]
+            this.url = URL.createObjectURL(file);
+            this.isPreviewShow = true
+        }
+    },
+    data(){
+        return{
+            url:null,
+            isPreviewShow:false
         }
     }
     

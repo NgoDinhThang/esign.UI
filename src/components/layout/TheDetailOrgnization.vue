@@ -30,7 +30,7 @@
                         </div>
                         <div class="detail-content-hspl-detail" >
                             <span>Ảnh chứng thực: <span style="color:red">*</span></span>
-                            <inputFile :withInputFile="390" :heightInputFile="32" :titleInputFile= "titleInputFile[1]" :indexFile="1" />
+                            <inputFile :withInputFile="390" :heightInputFile="32" :titleInputFile= "titleInputFile[1]" :indexFile="1"  />
                         </div>
                         <div class="detail-content-hspl-detail" >
                             <span>Mã số thuế: <span style="color:red">*</span></span>
@@ -199,7 +199,7 @@ export default ({
     methods:{
         uploadFile(){
             document.getElementById("file-attach").click()
-        }
+        },
     }
     ,
     data(){
@@ -214,7 +214,9 @@ export default ({
             ["Click chọn hoặc kéo thả ảnh vào đây","Click để tải ảnh lên"],
             indexFile:0,
             value_gct_right:
-            ["Chứng minh thư nhân dân","Thẻ căn cước","Hộ chiếu"]
+            ["Chứng minh thư nhân dân","Thẻ căn cước","Hộ chiếu"],
+            ispreviewShow:false,
+            url:null
 
 
         }
