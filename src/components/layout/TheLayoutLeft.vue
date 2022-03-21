@@ -35,10 +35,10 @@
                 </li>
 
                 <li class="menu-item">
-                    <a href="">               
+                    <router-link to="/tien-gui" style="color:white">               
                         <img src="https://testesignwebsiteadminrd.misa.com.vn/icon/1x/ico-QLCT.png" class="leftside-icon">
                         Xuất hồ sơ cho NEAC                  
-                    </a>
+                    </router-link>
                 </li>
 
                 

@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="">
     <div class="Detail-title">
         <div class="Detail-title-right">
             <div class="Detail-title-text-previous" @click="previousHome()"></div>
@@ -10,7 +10,7 @@
             </div>
             <div class="Detail-title-text-info-user" style="font-size:13px">
                 <div class="account" style="">
-                    Tài khoản: <b>{{detailRequest.buyerName}}</b>
+                    Tài khoản: <b></b>
                 </div>
                 <div class="detail-status">Chưa nộp hồ sơ</div>
             </div>
@@ -77,8 +77,7 @@ export default ({
     ["detailRequest"],
     methods:{
         previousHome(){
-            console.log("detailtitle")
-            this.$emit("previous",null)
+            history.back()
         }
     }
 })

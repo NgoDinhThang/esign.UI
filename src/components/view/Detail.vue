@@ -1,26 +1,19 @@
 <template>
 <div class="detail-file">
-    <DetailTitle :detailRequest= "detailRequest" @previous= "previous()"/>
-    <DetailContentOrg/>
+    <div class="">
+        <TheDetailTitle/>
+        <DetailPersonal/>
+    </div>
 </div>
     
 </template>
 <script>
-import DetailTitle from "../layout/TheDetailTitle.vue"
-// import DetailContentPO from "../layout/TheDetailContentPOrgnization.vue"
-// import DetailContentOrg from "../layout/TheDetailContentPersonal.vue"
-import DetailContentOrg from "../layout/TheDetailOrgnization.vue"
+import TheDetailTitle from "../layout/TheDetailTitle.vue"
+import DetailPersonal from "../layout/TheDetailContentPersonal.vue"
+
 export default ({
     components:{
-        DetailTitle,DetailContentOrg
-    },
-    props:
-    ["detailRequest"],
-    methods:{
-        previous(){
-            console.log("detailtitle")
-            this.$emit("previous",null)
-        }
+        TheDetailTitle,DetailPersonal
     }
 })
 </script>

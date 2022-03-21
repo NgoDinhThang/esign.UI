@@ -1,12 +1,7 @@
 <template>
   <div id="app" @click="clickApp()">
     <TheLayoutLeft/>
-    <div v-show="isHomeShow">
-      <TheTitle @searchWithOrderNo= "searchWithOrderNo"/>
-      <TheFeature @refresh= "refresh"/>
-      <TheLayoutRight @DetailRequest= "DetailRequest" @showFeature="showFeature" :searchOrderNo= "searchOrderNo" :refresh="refreshState" />
-    </div>
-    <Detail v-show="isDetailSHow" :detailRequest= "detailRequest" @previous = "previous()"/>
+    <router-view></router-view>
     
   </div>
 </template>
@@ -14,15 +9,10 @@
 <script>
 
 import TheLayoutLeft from "./components/layout/TheLayoutLeft.vue"
-import TheTitle from "./components/layout/TheTitle.vue"
-import TheFeature from "./components/layout/TheFeature.vue"
-import TheLayoutRight from "./components/layout/TheLayoutRight.vue"
-import Detail from "./components/view/Detail.vue"
-
 export default {
   name: 'App',
   components: {
-    TheLayoutLeft,TheTitle,TheFeature,TheLayoutRight, Detail
+    TheLayoutLeft
   },
   methods:{
     refresh(){
@@ -87,8 +77,6 @@ export default {
   },
   data() {
     return {
-      isHomeShow:true,
-      isDetailSHow:false,
       detailRequest: null,
       searchOrderNo:null,
       refreshState: false
