@@ -102,6 +102,7 @@ export default {
 #app{
   padding-right: 5px;
   /* scrollbar-width: thin; */
+  height: 100%;
   
 }
 ::-webkit-scrollbar{

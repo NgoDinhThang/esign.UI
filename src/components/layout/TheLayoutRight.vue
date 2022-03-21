@@ -58,7 +58,7 @@
                 <div class="search-second">
                     <div class="search-input-s">
                     <i class="fa fa-search" style=" font-size: 17px; color:#dddddd;"></i>
-                    <input type="text"  class="second searchInput" placeholder="Tìm kiếm theo từ khoá:số đơn hàng,chủ sở hữu,số điện thoại..." title="Tìm kiếm theo từ khoá:số đơn hàng,chủ sở hữu,số điện thoại,...">
+                    <input type="text"  class="second searchInput" id="search-Second" placeholder="Tìm kiếm theo từ khoá:số đơn hàng,chủ sở hữu,số điện thoại..." title="Tìm kiếm theo từ khoá:số đơn hàng,chủ sở hữu,số điện thoại,..." v-on:keyup.enter="onEnterSearchAll()" >
                 </div>
             </div>
              
@@ -111,6 +111,15 @@ export default ({
       }
   },
     methods: {
+        onEnterSearchAll(){
+            this.stateSearch =2
+            var me = this
+            var searchText = document.getElementById("search-Second").value
+            axios.get(`https://localhost:44309/api/v1/requests/search/All/${me.indexPage}-${me.pageSize}/${searchText}`)
+            .then((res)=>{
+                me.requests = res.data
+            })
+        },
         searchWithOrderNo(){
             this.stateSearch =1
         var me = this
@@ -133,19 +142,25 @@ export default ({
             {
                 this.getdata()
             }
-            else{
+            else if(this.stateSearch == 1){
                 this.searchWithOrderNo()
+            }
+            else if(this.stateSearch == 2){
+                this.onEnterSearchAll()
             }
             
         },
         changePageSize(recordsPage){
             this.pageSize = recordsPage
-            if(this.stateSearch == 0)
+           if(this.stateSearch == 0)
             {
                 this.getdata()
             }
-            else{
+            else if(this.stateSearch == 1){
                 this.searchWithOrderNo()
+            }
+            else if(this.stateSearch == 2){
+                this.onEnterSearchAll()
             }
         },
         //get data

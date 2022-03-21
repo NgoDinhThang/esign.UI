@@ -25,17 +25,20 @@
             <button class="feature-button-setting">
                 
             </button>
-            <button class="feature-button-logout" style="margin-right:0px !important">
+            <button class="feature-button-export" style="margin-right:0px !important" @click="exportExcelFile()">
                 
             </button>
         </div>
     </div>
 </template>
 <script>
+
 export default ({
     methods:{
         refresh(){
             this.$emit("refresh",null)
+        },
+        exportExcelFile(){
         }
     }
 })

@@ -88,16 +88,6 @@ export default ({
         },
         //event click to select page
         selectedPage(){
-            //xóa style của button page  hiện tại
-            // var indexPages = document.getElementsByClassName("footer-paging-pageindex")
-            // for (const indexPage of indexPages) {
-            //     indexPage.style.backgroundColor = "unset"
-            //     indexPage.style.color = "black"
-
-            // }
-            //     //đặt style cho button page vừa chọn
-            //     event.currentTarget.style.backgroundColor = "#A286BF"
-            //     event.currentTarget.style.color = "white"
 
             this.indexPageSelected = parseInt(event.currentTarget.innerHTML)
             

@@ -178,7 +178,7 @@ export default ({
 }
 .Detail-title-text{
     margin-left: 5px;
-    display: grid;
+    display:inline-block;
 }
 .Detail-title-text-info-user{
     display: flex;

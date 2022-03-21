@@ -1,0 +1,246 @@
+.Detail-content{
+    height: auto;
+    padding-left: 30px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+    display: flex;
+    padding-top: 20px;
+    width: 100%;
+    background-color: white;
+    
+}
+.detail-footer{
+    width: 100%;
+    margin-top: 5px;
+    padding: 20px 15px 20px 30px;
+    background-color: white;
+    display: flex;
+    height: 300px;
+}
+.Detail-content-cerregist{
+
+    width: 550px;
+    height: 100%;
+    position: relative;
+    font-size: 16px;
+    
+}
+.Detail-content-cerregist::before{
+    content : "";
+  position: absolute;
+  right    : 0;
+  top  : 20px;
+  height   : 25%;  /* or 100px */
+  border-right:1px solid #ccc;
+}
+h5{
+    font-size: 16px;
+    color: black;
+    font-weight: 700;
+}
+ h5{
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    width: 400px;
+}
+.Detail-content-hspl h5{
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+
+}
+ h5::before{
+    content : "";
+  position: absolute;
+  left    : 0;
+  bottom:  0px;
+  width   : 60px;  /* or 100px */
+  border-bottom:1px solid rgb(91, 20, 155);
+}
+
+.Detail-content-hspl h5::before{
+    content : "";
+  position: absolute;
+  left    : 0;
+  bottom:  0px;
+  width   : 60px;  /* or 100px */
+  border-bottom:1px solid rgb(91, 20, 155);
+}
+h6{
+    width: 70px;
+    height: 30px;
+    position: relative;
+    
+}
+h6::before{
+    content : "";
+    position: absolute;
+    left    : 0;
+    bottom:  0px;
+    width   : 60px;  /* or 100px */
+    border-bottom:1px solid rgb(91, 20, 155);
+}
+
+.detail-content-cerregist-postfile{
+    font-size: 13px;
+}
+.input{
+    margin-top: 5px;
+}
+.input:hover{
+    cursor: pointer;
+}
+.Detail-content-hspl{
+    width: 100%;
+}
+.detail-content-hspl-detail{
+    display: flex;
+    justify-content: left;
+    padding-bottom: 5px;
+    
+}
+.detail-content-hspl-detail span{
+    line-height: 30px;
+    width: 140px;
+}
+.detail-content-hspl-info{
+    height: auto;
+    display: flex;
+}
+.detail-content-hspl-info-orgnization{
+    width: 100%;
+    height: auto;
+    padding-left: 30px;
+    padding-top: 15px;
+    padding-right: 15px;
+}
+.taxcode{
+    width: 390px;
+    height: 32px;
+}
+.taxcode::placeholder {
+    font-style: italic;
+    padding-left: 10px;
+    font-size: 12px;
+}
+.taxcode{
+    padding-left: 5px;
+}
+.text-area{
+    width: 390px;
+    border:1px solid #ccc;
+    border-radius: 5px;
+
+}
+.text-area:focus{
+    outline: none;
+}
+.detail-content-hspl-detail span{
+color: rgb(101, 100, 100);
+}
+
+.detail-content-hepl-info-owner{
+    padding: 15px;
+}
+.child{
+    text-align: center;
+}
+.input-date::placeholder{
+    padding-left: 0px !important;
+}
+.input-date{
+    padding-left: 5px;
+    width:365px;
+    height: 32px;
+}
+.Detail-contact{
+    width: 100%;
+    margin-top: 5px;
+    padding: 20px 15px 20px 30px;
+    background-color: white;
+}
+.account-content{
+    padding-top: 12px;
+    display: flex;
+}
+.account-name{
+    color: #212121;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.account-content-info{
+    width: 50%;
+}
+.account-content-info div{
+    width: calc(100% - 20px);
+    margin-bottom: 5px;
+}
+.account-content-info div label{
+    width: 20%;
+}
+.account-content-info div input{
+    height: 22px;
+    width: 350px;
+}
+.detail{
+    height: 780px;
+    overflow: scroll;
+}
+.detail-footer-note{
+    
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 5px;
+}
+.detail-footer-first{
+    height: 100%;
+    width: 42%;
+    border-right: 1px dotted #a286bf;
+}
+
+.detail-footer-second{
+    height: 100%;
+    width: 32%;
+    border-right: 1px dotted #a286bf;
+}
+
+.detail-footer-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 5px;
+    padding-left: 10px;
+}
+
+.detail-footer-file{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 5px;
+    padding-left: 10px;
+}
+
+.detail-footer-third{
+    height: 100%;
+    width: 26%;
+}
+.icon-upload-attach{
+    width: 40px;
+    height: 30px;
+    background-image: url(https://testesignwebsiteadminrd.misa.com.vn/icon/1x/attach.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    border:1px solid #f1f1f1;
+    border-radius: 5px;
+    position: relative;
+}
+.icon-upload-attach:hover{
+    cursor: pointer;
+    border:1px solid black
+}
+#file-attach{
+    display: none;
+}
