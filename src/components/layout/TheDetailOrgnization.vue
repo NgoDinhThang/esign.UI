@@ -6,7 +6,7 @@
             <div class="detail-content-cerregist-postfile">
                 Tải file lên
                 <div class="input" style="margin-right: 40px;">
-                    <inputFile :withInputFile="500" :heightInputFile="47" :titleInputFile= "titleInputFile[0]" :indexFile="0"/>
+                    <inputFile :withInputFile="500" :heightInputFile="47" :widthPreview="500" :heightPreview="400" :titleInputFile= "titleInputFile[0]" :indexFile="0"  />
                 </div>
                 
             </div>
@@ -30,15 +30,15 @@
                         </div>
                         <div class="detail-content-hspl-detail" >
                             <span>Ảnh chứng thực: <span style="color:red">*</span></span>
-                            <inputFile :withInputFile="390" :heightInputFile="32" :titleInputFile= "titleInputFile[1]" :indexFile="1"  />
+                            <inputFile :withInputFile="376" :heightInputFile="32" :widthPreview="170" :heightPreview="90" :titleInputFile= "titleInputFile[1]" :indexFile="1"  />
                         </div>
                         <div class="detail-content-hspl-detail" >
                             <span>Mã số thuế: <span style="color:red">*</span></span>
-                            <input type="text" class="taxcode" placeholder="Nhập mã số thuế hoặc mã QHNS" >
+                            <input type="text" class="taxcode"  placeholder="Nhập mã số thuế hoặc mã QHNS" v-model="detailRequest.request.taxCode" >
                         </div>
                         <div class="detail-content-hspl-detail" >
-                            <span>Mã số thuế: <span style="color:red">*</span></span>
-                            <textarea class="text-area"></textarea>
+                            <span>Tên tổ chức: <span style="color:red">*</span></span>
+                            <textarea class="text-area" v-model="detailRequest.enterPriseInfo.companyName"></textarea>
                         </div>
 
                         <div class="detail-content-hspl-detail" >
@@ -53,7 +53,7 @@
 
                         <div class="detail-content-hspl-detail" >
                             <span>Địa chỉ: <span style="color:red">*</span></span>
-                            <input type="text" class="taxcode" placeholder="" value="Chọn quận/huyện, Chọn tỉnh/thành phố, Việt Nam" >
+                            <input type="text" class="taxcode" placeholder="" value="Chọn quận/huyện, Chọn tỉnh/thành phố, Việt Nam" v-model="detailRequest.enterPriseInfo.companyAddress" >
                         </div>
                     </div>
                     
@@ -72,12 +72,12 @@
                             <span>Ảnh chứng thực </span>
                             <div class="child">
                                 Mặt trước
-                                <inputFile :withInputFile="177" :heightInputFile="28" :titleInputFile= "titleInputFile[1]" style="margin-top:4px" :indexFile="2"/>
+                                <inputFile :withInputFile="177" :heightInputFile="28" :widthPreview="170" :heightPreview="90" :titleInputFile= "titleInputFile[1]" style="margin-top:4px" :indexFile="2"/>
                             </div>
 
                              <div class="child" style="margin-left:10px">
                                 Mặt sau
-                                <inputFile :withInputFile="177" :heightInputFile="28" :titleInputFile= "titleInputFile[1]" style="margin-top:4px" :indexFile="3"/>
+                                <inputFile :withInputFile="177" :heightInputFile="28" :widthPreview="170" :heightPreview="90" :titleInputFile= "titleInputFile[1]" style="margin-top:4px" :indexFile="3"/>
                             </div>
                         </div>
                         <div class="detail-content-hspl-detail" style="margin-top:4px" >
@@ -115,12 +115,6 @@
                             <input type="text" class="taxcode" style="width:365px" placeholder="Nhập chức danh"  >
                         </div>
                     </div>
-                        
-
-
-
-
-
                 </div>
             </div>
             
@@ -137,11 +131,11 @@
                 <div class="account-name">Tài khoản 1</div>
                 <div>
                     <label>Họ và đệm:</label>
-                    <input type="text">
+                    <input type="text" v-model="detailRequest.listUserRemoteSigning[0].surname">
                 </div>
                  <div>
                     <label>Tên:</label>
-                    <input type="text">
+                    <input type="text" v-model="detailRequest.listUserRemoteSigning[0].name">
                 </div>
                  <div>
                     <label>Số điện thoại:</label>
@@ -191,6 +185,7 @@
 import baseButton from "../base/BaseButton.vue"
 import inputFile from "../base/BaseInputFile.vue"
 import comboboxDetail from "../base/BaseComboboxDetail.vue"
+import axios from "axios"
 
 export default ({
     components:{
@@ -200,6 +195,19 @@ export default ({
         uploadFile(){
             document.getElementById("file-attach").click()
         },
+    },
+    created(){
+        var id = window.location.search.substring(1).slice(3)
+        axios.get(`https://localhost:44309/api/v1/requests/detail/${id}`)
+      .then((res)=>{
+        this.detailRequest = res.data
+        console.log(this.detailRequest)
+        this.defaultValue[2] = this.detailRequest.enterPriseInfo.proviceName
+        
+        this.defaultValue[3] = this.detailRequest.enterPriseInfo.districtName
+        this.$emit("Account",this.detailRequest.caUserName)
+
+      })
     }
     ,
     data(){
@@ -216,7 +224,9 @@ export default ({
             value_gct_right:
             ["Chứng minh thư nhân dân","Thẻ căn cước","Hộ chiếu"],
             ispreviewShow:false,
-            url:null
+            url:null,
+            value_tp:null,
+            detailRequest:null,
 
 
         }

@@ -1,8 +1,8 @@
 <template>
 <div class="detail-file">
     <div class="">
-        <TheDetailTitle/>
-        <DetailPersonal/>
+        <TheDetailTitle :certType="titleDetail" :userName="userName"/>
+        <DetailPersonal @Account="account"/>
     </div>
 </div>
     
@@ -14,6 +14,18 @@ import DetailPersonal from "../layout/TheDetailContentPersonal.vue"
 export default ({
     components:{
         TheDetailTitle,DetailPersonal
+    },
+    methods:{
+        account(caUserName){
+            this.userName = caUserName
+        }
+    },
+    data(){
+        return{
+            titleDetail:"Cá nhân",
+            userName:null
+
+        }
     }
 })
 </script>

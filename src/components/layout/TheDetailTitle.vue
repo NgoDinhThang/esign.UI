@@ -10,7 +10,7 @@
             </div>
             <div class="Detail-title-text-info-user" style="font-size:13px">
                 <div class="account" style="">
-                    Tài khoản: <b></b>
+                    Tài khoản: <b>{{userName}}</b>
                 </div>
                 <div class="detail-status">Chưa nộp hồ sơ</div>
             </div>
@@ -33,7 +33,7 @@
             </div>
 
             <div class="detail-header-text-producttype" style="margin-left:15px">
-                Loại chứng thư:<span>Chứng thư số</span>
+                Loại chứng thư:<span>{{certType}}</span>
             </div>
 
 
@@ -74,7 +74,7 @@ export default ({
     components:{
     },
     props:
-    ["detailRequest"],
+    ["certType","userName"],
     methods:{
         previousHome(){
             history.back()

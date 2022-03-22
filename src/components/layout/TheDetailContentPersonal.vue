@@ -6,7 +6,7 @@
             <div class="detail-content-cerregist-postfile">
                 Tải file lên
                 <div class="input" style="margin-right: 40px;">
-                    <inputFile :withInputFile="500" :heightInputFile="32" :titleInputFile= "titleInputFile[0]" :indexFile="0"/>
+                    <inputFile :withInputFile="500" :heightInputFile="32" :widthPreview="500" :heightPreview="400" :titleInputFile= "titleInputFile[0]" :indexFile="0"/>
                 </div>
                 
             </div>
@@ -32,12 +32,12 @@
                             <span>Ảnh chứng thực </span>
                             <div class="child">
                                 Mặt trước
-                                <inputFile :withInputFile="180" :heightInputFile="28" :titleInputFile= "titleInputFile[0]" style="margin-top:4px" :indexFile="1"/>
+                                <inputFile :withInputFile="180" :heightInputFile="28" :widthPreview="170" :heightPreview="90" :titleInputFile= "titleInputFile[0]" style="margin-top:4px" :indexFile="1"/>
                             </div>
 
                              <div class="child" style="margin-left:10px">
                                 Mặt sau
-                                <inputFile :withInputFile="180" :heightInputFile="28" :titleInputFile= "titleInputFile[0]" style="margin-top:4px" :indexFile="2"/>
+                                <inputFile :withInputFile="180" :heightInputFile="28" :widthPreview="170" :heightPreview="90" :titleInputFile= "titleInputFile[0]" style="margin-top:4px" :indexFile="2"/>
                             </div>
                         </div>
                         <div class="detail-content-hspl-detail" >
@@ -172,6 +172,7 @@
 import baseButton from "../base/BaseButton.vue"
 import inputFile from "../base/BaseInputFile.vue"
 import comboboxDetail from "../base/BaseComboboxDetail.vue"
+import axios from "axios"
 
 export default ({
     components:{
@@ -181,6 +182,14 @@ export default ({
         uploadFile(){
             document.getElementById("file-attach").click()
         }
+    },
+    created(){
+        var id = window.location.search.substring(1).slice(3)
+        axios.get(`https://localhost:44309/api/v1/requests/detail/${id}`)
+      .then((res)=>{
+        this.detailRequest = res.data
+        this.$emit("Account",this.detailRequest.caUserName)
+      })
     }
     ,
     data(){

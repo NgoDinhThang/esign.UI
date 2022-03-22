@@ -45,10 +45,7 @@
         </div>
 </template>
 <script>
-
-
-
-
+import axios from "axios"
 export default ({
   props:
   ["indexPage","pageSize","requests"],
@@ -91,10 +88,36 @@ export default ({
         this.showFeatureState =0
       }
     },
-    //doubleclick table row
+    //doublecli'ck table row
     dblclickTableRow(request){
-      console.log(request)
-      this.$emit("detailRequest",request)
+      
+      var urlDetail
+
+      axios.get(`https://localhost:44309/api/v1/requests/service/${request.serviceId}`)
+      .then((res)=>{
+        this.serviceState = res.data
+        console.log(this.serviceState)
+        switch (this.serviceState) {
+        case 0:
+          urlDetail = `http://localhost:8080/detail-orgnization?id=${request.requestId}`
+          break;
+        case 1:
+          urlDetail = `http://localhost:8080/detail-personal?id=${request.requestId}`
+          break;
+        case 2:
+          urlDetail = `http://localhost:8080/detail-personal-orgnization?id=${request.requestId}`
+          break;
+        default:
+          break;
+        }
+        window.location.href = urlDetail
+      
+        
+
+      })
+      
+      
+      
     },
     //format trạng thái nộp bản cứng
     formatIsReceivedProfile(value)
@@ -177,6 +200,9 @@ export default ({
           case 2:
           value ="USB Token"
           break;
+          case 0:
+          value ="USB Token"
+          break;
       
         default:
           break;
@@ -255,7 +281,9 @@ export default ({
   },
   data() {
     return {
-      showFeatureState:0
+      showFeatureState:0,
+      detailRequest:null,
+      serviceState:0
     }
   }
 })
