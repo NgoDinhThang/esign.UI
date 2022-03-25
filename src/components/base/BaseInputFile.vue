@@ -19,7 +19,7 @@
 <script>
 export default {
     props:
-    ["withInputFile","heightInputFile","titleInputFile","indexFile","widthPreview","heightPreview"],
+    ["withInputFile","heightInputFile","titleInputFile","indexFile","widthPreview","heightPreview","objectID"],
     methods:{
         
         MClick(){
@@ -30,6 +30,16 @@ export default {
             this.url = URL.createObjectURL(file);
             this.isPreviewShow = true,
             this.isinputfileShow = false
+        },
+        
+    },
+    watch:{
+        objectID(){
+            if(this.objectID){
+                this.url = `https://localhost:44309/api/v1/files/${this.objectID}`;
+                this.isPreviewShow = true,
+                this.isinputfileShow = false
+            }
         }
     },
     data(){

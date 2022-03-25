@@ -30,7 +30,7 @@
                         </div>
                         <div class="detail-content-hspl-detail" >
                             <span>Ảnh chứng thực: <span style="color:red">*</span></span>
-                            <inputFile :withInputFile="376" :heightInputFile="32" :widthPreview="170" :heightPreview="90" :titleInputFile= "titleInputFile[1]" :indexFile="1"  />
+                            <inputFile :withInputFile="376" :heightInputFile="32" :widthPreview="170" :heightPreview="90" :titleInputFile= "titleInputFile[1]" :indexFile="1" :objectID="detailRequest.enterPriseInfo.objectId"  />
                         </div>
                         <div class="detail-content-hspl-detail" >
                             <span>Mã số thuế: <span style="color:red">*</span></span>
@@ -38,22 +38,22 @@
                         </div>
                         <div class="detail-content-hspl-detail" >
                             <span>Tên tổ chức: <span style="color:red">*</span></span>
-                            <textarea class="text-area" v-model="detailRequest.enterPriseInfo.companyName"></textarea>
+                            <textarea class="text-area" v-model="detailRequest.request.esignCerName"></textarea>
                         </div>
 
-                        <div class="detail-content-hspl-detail" >
+                        <div class="detail-content-hspl-detail" @change="changeProvince()">
                             <span>Tỉnh/thành phố: <span style="color:red">*</span></span>
-                            <comboboxDetail v-bind:withCombobox="390" :bgrPosition="352" :state="2" :values= "value_tp" :defaultValue= "defaultValue[2]"/>
+                            <comboboxDetail id="province" @selectedValue= "selectedprovince" v-bind:withCombobox="390" :withOption="375" :bgrPosition="352" :state="2" :values= "valueProvince" :defaultValue= "defaultValue[2]" style="z-index:100;"/>
                         </div>
 
-                        <div class="detail-content-hspl-detail" >
+                        <div class="detail-content-hspl-detail"  >
                             <span>Quận/huyện: <span style="color:red">*</span></span>
-                            <comboboxDetail v-bind:withCombobox="390" :bgrPosition="352" :state="3" :values= "value_tp" :defaultValue= "defaultValue[3]"/>
+                            <comboboxDetail v-bind:withCombobox="390" :withOption="375" :bgrPosition="352" :state="3" :values= "valueDistrict" :defaultValue= "defaultValue[3]" style="z-index:99;"/>
                         </div>
 
                         <div class="detail-content-hspl-detail" >
                             <span>Địa chỉ: <span style="color:red">*</span></span>
-                            <input type="text" class="taxcode" placeholder="" value="Chọn quận/huyện, Chọn tỉnh/thành phố, Việt Nam" v-model="detailRequest.enterPriseInfo.companyAddress" >
+                            <input type="text" class="taxcode" placeholder="" value="Chọn quận/huyện, Chọn tỉnh/thành phố, Việt Nam" v-model="defaultRequets(detailRequest.enterPriseInfo).companyAddress" >
                         </div>
                     </div>
                     
@@ -82,37 +82,37 @@
                         </div>
                         <div class="detail-content-hspl-detail" style="margin-top:4px" >
                             <span>Số hiệu giấy tờ: <span style="color:red">*</span></span>
-                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập số hiệu giấy tờ" >
+                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập số hiệu giấy tờ" :value="detailRequest.enterPriseInfo.representativeNumber" >
                         </div>
 
                         <div class="detail-content-hspl-detail" >
                             <span>Ngày cấp: <span style="color:red">*</span></span>
-                            <input type="date" class="input-date"  >
+                            <input type="date" class="input-date" :value="formatdate(detailRequest.enterPriseInfo.representativeIDFromDate)"  >
                         </div>
 
                         <div class="detail-content-hspl-detail" >
                             <span>Có giá trị đến <span style="color:red">*</span></span>
-                            <input type="date" class="input-date"  >
+                            <input type="date" class="input-date" :value="formatdate(detailRequest.enterPriseInfo.representativeIDToDate)"  >
                         </div>
 
                         <div class="detail-content-hspl-detail"  >
                             <span>Họ và tên: <span style="color:red">*</span></span>
-                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập họ tên"  >
+                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập họ tên"  :value="detailRequest.enterPriseInfo.representativeName" >
                         </div>
 
                         <div class="detail-content-hspl-detail"  >
                             <span>Số điện thoại: <span style="color:red">*</span></span>
-                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập số điện thoại" >
+                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập số điện thoại" :value="detailRequest.enterPriseInfo.representativePhoneNumber" >
                         </div>
 
                         <div class="detail-content-hspl-detail"  >
                             <span>Email: <span style="color:red">*</span></span>
-                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập Email"  >
+                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập Email"  :value="detailRequest.enterPriseInfo.representativeEmail" >
                         </div>
 
                         <div class="detail-content-hspl-detail"  >
                             <span>Chức danh: <span style="color:red">*</span></span>
-                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập chức danh"  >
+                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập chức danh"  :value="detailRequest.enterPriseInfo.appointPositionBucketName" >
                         </div>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
 
         </div>
     </div>
-    <div class="Detail-contact">
+    <div class="Detail-contact" v-show="isHaveAccountRemote" >
         <div class="account" style="font-size:13px">
             <h5 style="width:200px">THÔNG TIN TÀI KHOẢN</h5>
             <div style="width:650px !important">Hệ thống sẽ cấp chứng thư số cho tài khoản mà bạn khai báo, vui lòng nhập chính xác thông tin khách hàng. KHÔNG NHẬP THÔNG TIN CỦA NHÂN VIÊN KINH DOANH.</div>
@@ -131,19 +131,19 @@
                 <div class="account-name">Tài khoản 1</div>
                 <div>
                     <label>Họ và đệm:</label>
-                    <input type="text" v-model="detailRequest.listUserRemoteSigning[0].surname">
+                    <input type="text" class="input-account" :value="defaultRequets(detailRequest.listUserRemoteSigning)[0].surname">
                 </div>
                  <div>
                     <label>Tên:</label>
-                    <input type="text" v-model="detailRequest.listUserRemoteSigning[0].name">
+                    <input type="text" class="input-account" :value="defaultRequets(detailRequest.listUserRemoteSigning)[0].name">
                 </div>
                  <div>
                     <label>Số điện thoại:</label>
-                    <input type="text">
+                    <input type="text" class="input-account" :value="defaultRequets(detailRequest.listUserRemoteSigning)[0].phoneNumber">
                 </div>
                  <div>
                     <label>Email:</label>
-                    <input type="text">
+                    <input type="text" class="input-account" :value="defaultRequets(detailRequest.listUserRemoteSigning)[0].email">
                 </div>
             </div>
 
@@ -191,25 +191,110 @@ export default ({
     components:{
         inputFile,comboboxDetail,baseButton
     },
+    updated(){
+        // document.getElementById("province").children[0].addEventListener("DOMSubtreeModified",()=>{
+        //     var objects = this.objectProvince
+
+        //     var keyword = document.getElementById("province").children[0].innerHTML
+        //     for (const object of objects) {
+        //         console.log(1)
+        //         if(object.name == keyword){
+        //             console.log("2")
+        //         }
+        //     }
+        // })
+        console.log(1)
+    },
     methods:{
+        formatRepresentativeDocuType(value){
+            switch (value) {
+                case 0:
+                    value="Chứng minh thư nhân dân"
+                    break;
+                case 1:
+                    value="Hộ chiếu"
+                    break;
+            
+                default:
+                    value=" "
+                    break;
+            }
+            return value
+        },
+        formatdate(value){
+            var date = new Date(value)
+            var month = date.getMonth()+1
+            if(month < 10){
+                month = "0" + month
+            }
+            var day = date.getDay()
+            if(day < 10){
+                day = "0" + day
+            }
+            return date.getFullYear()+'-'+month+'-'+day;
+        },
+        selectedprovince(keyword){
+            for (const province of this.objectProvince) {
+                if(`"${keyword}"`==`" ${province.name} "`)
+                {
+                    this.valueDistrict = province.districts.map(obj=>obj.name)
+                }
+            }
+        },
+        defaultRequets(value){
+            if(!value){
+                return ["Default"]
+            }else{
+                return value
+            }
+        },
         uploadFile(){
             document.getElementById("file-attach").click()
         },
     },
     created(){
+        axios.get(`https://provinces.open-api.vn/api/?depth=2`)
+      .then((respond)=>{
+          this.objectProvince = respond.data
+          this.valueProvince = this.objectProvince.map(obj=>obj.name)
+      })
         var id = window.location.search.substring(1).slice(3)
         axios.get(`https://localhost:44309/api/v1/requests/detail/${id}`)
       .then((res)=>{
+        var me =  this
         this.detailRequest = res.data
         console.log(this.detailRequest)
-        this.defaultValue[2] = this.detailRequest.enterPriseInfo.proviceName
+        if(this.detailRequest.enterPriseInfo)
+        {
+            this.defaultValue[2] = this.detailRequest.enterPriseInfo.proviceName
+            
+            this.defaultValue[3] = this.detailRequest.enterPriseInfo.districtName
+            me.defaultValue[4] =  me.formatRepresentativeDocuType(me.detailRequest.enterPriseInfo.representativeDocuType)
         
-        this.defaultValue[3] = this.detailRequest.enterPriseInfo.districtName
+        }
+        else{
+            this.detailRequest.enterPriseInfo = " "
+        }
+        this.isHaveAccountRemote = this.detailRequest.isHaveAccountRemote
+        
+
         this.$emit("Account",this.detailRequest.caUserName)
 
       })
-    }
-    ,
+      .catch((err)=>{
+          console.log(err)
+          alert("Hồ sơ này chưa được hoàn thành")
+      })
+
+      
+    },
+   
+        
+ 
+    watch:{
+      
+    },
+    
     data(){
         return {
             values_lhs:
@@ -217,7 +302,7 @@ export default ({
             value_gct:
             ["Giấy chứng nhận đăng ký tổ chức","Giấy chứng nhận đầu tư","Quyết định thành lập phòng ban","Quyết định quy định về chức năng,nhiệm vụ,quyền hạn,cơ cấu tổ chức"],
             defaultValue:
-            ["--Không xác định--","Giấy chứng nhận đăng ký tổ chức","Chọn tỉnh/thành phố","Chọn quận/huyện","Chứng minh nhân dân"],
+            ["--Không xác định--","Giấy chứng nhận đăng ký tổ chức","Chọn tỉnh/thành phố","Chọn quận/huyện","Chứng minh thư nhân dân"],
             titleInputFile:
             ["Click chọn hoặc kéo thả ảnh vào đây","Click để tải ảnh lên"],
             indexFile:0,
@@ -227,6 +312,10 @@ export default ({
             url:null,
             value_tp:null,
             detailRequest:null,
+            isHaveAccountRemote:true,
+            valueProvince:null,
+            valueDistrict:null,
+            objectProvince:null,
 
 
         }

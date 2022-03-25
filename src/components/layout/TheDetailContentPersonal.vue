@@ -42,21 +42,21 @@
                         </div>
                         <div class="detail-content-hspl-detail" >
                             <span>Họ và tên: <span style="color:red">*</span></span>
-                            <input type="text" class="taxcode" placeholder="Nhập họ và tên" style="width:370px" >
+                            <input type="text" class="taxcode" placeholder="Nhập họ và tên" style="width:370px" :value="detailRequest.personalInfo.personalName" >
                         </div>
                         <div class="detail-content-hspl-detail" >
                             <span>Số hiệu giấy tờ: <span style="color:red">*</span></span>
-                            <input type="text" class="taxcode" placeholder="Nhập số hiệu giấy tờ" style="width:370px" >
+                            <input type="text" class="taxcode" placeholder="Nhập số hiệu giấy tờ" style="width:370px" :value="detailRequest.personalInfo.documentNumber" >
                         </div>
 
                         <div class="detail-content-hspl-detail"  >
                             <span>Ngày cấp: <span style="color:red">*</span></span>
-                            <input type="date" class="input-date"  style="width:370px" >
+                            <input type="date" class="input-date"  style="width:370px" :value="formatdate(detailRequest.personalInfo.documentFromDate)" >
                         </div>
 
                         <div class="detail-content-hspl-detail" >
                             <span>Có giá trị đến <span style="color:red">*</span></span>
-                            <input type="date" class="input-date" style="width:370px"  >
+                            <input type="date" class="input-date" style="width:370px"  :value="formatdate(detailRequest.personalInfo.documentToDate)" >
                         </div>
                         
 
@@ -68,12 +68,12 @@
 
                         <div class="detail-content-hspl-detail" style="margin-top:50px"  >
                             <span>Số điện thoại: <span style="color:red">*</span></span>
-                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập trùng với SĐT chủ sở hữu chứng thư trên đơn đăng ký" >
+                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập trùng với SĐT chủ sở hữu chứng thư trên đơn đăng ký" :value="detailRequest.personalInfo.mobile" >
                         </div>
 
                         <div class="detail-content-hspl-detail"  >
                             <span>Email: <span style="color:red">*</span></span>
-                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập trùng với Email chủ sở hữu chứng thư trên đơn đăng ký"  >
+                            <input type="text" class="taxcode" style="width:365px" placeholder="Nhập trùng với Email chủ sở hữu chứng thư trên đơn đăng ký" :value="detailRequest.personalInfo.email"  >
                         </div>
 
             
@@ -81,12 +81,12 @@
 
                         <div class="detail-content-hspl-detail" >
                             <span>Tỉnh/thành phố: <span style="color:red">*</span></span>
-                            <comboboxDetail v-bind:withCombobox="365" :bgrPosition="342" :state="2" :values= "value_tp" :defaultValue= "defaultValue[2]"/>
+                            <comboboxDetail id="province" @selectedValue= "selectedprovince" :withOption="365" v-bind:withCombobox="365" :bgrPosition="342" :state="2" :values= "valueProvince" :defaultValue= "defaultValue[2]" style="z-index:100;"/>
                         </div>
 
                         <div class="detail-content-hspl-detail" >
                             <span>Quận/huyện: <span style="color:red">*</span></span>
-                            <comboboxDetail v-bind:withCombobox="365" :bgrPosition="342" :state="3" :values= "value_tp" :defaultValue= "defaultValue[3]"/>
+                            <comboboxDetail v-bind:withCombobox="365" :bgrPosition="342" :withOption="365" :state="3" :values= "valueDistrict" :defaultValue= "defaultValue[3]" style="z-index:99;"/>
                         </div>
 
                         <div class="detail-content-hspl-detail" >
@@ -118,19 +118,19 @@
                 <div class="account-name">Tài khoản 1</div>
                 <div>
                     <label>Họ và đệm:</label>
-                    <input type="text">
+                    <input type="text" :value="defaultRequets(detailRequest.listUserRemoteSigning)[0].surname">
                 </div>
                  <div>
                     <label>Tên:</label>
-                    <input type="text">
+                    <input type="text" :value="defaultRequets(detailRequest.listUserRemoteSigning)[0].name">
                 </div>
                  <div>
                     <label>Số điện thoại:</label>
-                    <input type="text">
+                    <input type="text" :value="defaultRequets(detailRequest.listUserRemoteSigning)[0].phoneNumber">
                 </div>
                  <div>
                     <label>Email:</label>
-                    <input type="text">
+                    <input type="text" :value="defaultRequets(detailRequest.listUserRemoteSigning)[0].email">
                 </div>
             </div>
 
@@ -179,16 +179,65 @@ export default ({
         inputFile,comboboxDetail,baseButton
     },
     methods:{
+        selectedprovince(keyword){
+            for (const province of this.objectProvince) {
+                if(`"${keyword}"`==`" ${province.name} "`)
+                {
+                    this.valueDistrict = province.districts.map(obj=>obj.name)
+                }
+            }
+        },
         uploadFile(){
             document.getElementById("file-attach").click()
+        },
+        defaultRequets(value){
+            if(!value){
+                return ["Default"]
+            }else{
+                return value
+            }
+        },
+        formatdate(value){
+            var date = new Date(value)
+            var month = date.getMonth()+1
+            if(month < 10){
+                month = "0" + month
+            }
+            var day = date.getDay()
+            if(day < 10){
+                day = "0" + day
+            }
+            return date.getFullYear()+'-'+month+'-'+day;
         }
     },
     created(){
+        axios.get(`https://provinces.open-api.vn/api/?depth=2`)
+      .then((respond)=>{
+          this.objectProvince = respond.data
+          this.valueProvince = this.objectProvince.map(obj=>obj.name)
+      })
         var id = window.location.search.substring(1).slice(3)
         axios.get(`https://localhost:44309/api/v1/requests/detail/${id}`)
       .then((res)=>{
         this.detailRequest = res.data
+        if(this.detailRequest.personalInfo)
+        {
+            this.defaultValue[2] = this.detailRequest.personalInfo.provinceName
+            
+            this.defaultValue[3] = this.detailRequest.personalInfo.districtName
+        
+        }
+        else{
+            this.detailRequest.enterPriseInfo = " "
+        }
+        this.isHaveAccountRemote = this.detailRequest.isHaveAccountRemote
+        
         this.$emit("Account",this.detailRequest.caUserName)
+
+      })
+      .catch((err)=>{
+          console.log(err)
+          alert("Hồ sơ này chưa được hoàn thành")
       })
     }
     ,
@@ -203,6 +252,14 @@ export default ({
             titleInputFile:
             ["Click để tải ảnh lên"],
             indexFile:0,
+            ispreviewShow:false,
+            url:null,
+            value_tp:null,
+            detailRequest:null,
+            isHaveAccountRemote:true,
+            valueProvince:null,
+            valueDistrict:null,
+            objectProvince:null
 
 
         }

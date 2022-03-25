@@ -38,6 +38,8 @@ export default ({
          SelectValue(){
             var me = this
             document.getElementsByClassName("m-combobox-value-default-detail")[me.state].innerHTML = event.currentTarget.innerHTML
+            this.$emit("selectedValue",event.currentTarget.innerHTML)
+
             this.isShow = false
         }
         }
@@ -50,7 +52,6 @@ export default ({
 .m-combobox {
     height: 32px;
     position: relative;
-    z-index: 10;
 }
 
 .m-combobox-value-option-detail {
@@ -61,12 +62,14 @@ export default ({
     background-color: white;
     border-radius: 5px;
     font-size: 14px;
+    max-height: 300px;
+    overflow: scroll;
     
 }
 
 .m-combobox-value-option-detail div {
     border-bottom: 0.5px solid rgb(224, 224, 224);
-    padding-left: 12px;
+    padding-left: 5px;
     height: 30px;
     line-height: 30px;
     /* display: inline-block; */
@@ -89,7 +92,7 @@ export default ({
     font-size: 13px;
     line-height: 30px;
     height: 30px !important;
-    padding-left: 12px;
+    padding-left: 5px;
     padding-right: 20px;
     text-overflow: ellipsis !important;
     overflow: hidden;

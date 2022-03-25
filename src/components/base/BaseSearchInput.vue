@@ -1,7 +1,7 @@
 <template>
     <div class="search-input">
             <i class="fa fa-search" style=" font-size: 17px; color:#dddddd;"></i>
-        <input type="text" placeholder="Tìm kiếm theo số đơn hàng" title="Tìm kiếm theo số đơn hàng" id="searchWithOrderNo" class="searchInput" v-on:keyup.enter="onEnter()">
+        <input type="text" style="padding-left:35px !important" placeholder="Tìm kiếm theo số đơn hàng" title="Tìm kiếm theo số đơn hàng" id="searchWithOrderNo" class="searchInput" v-on:keyup.enter="onEnter()">
     </div>
 </template>
 <script>

@@ -58,7 +58,7 @@
                 <div class="search-second">
                     <div class="search-input-s">
                     <i class="fa fa-search" style=" font-size: 17px; color:#dddddd;"></i>
-                    <input type="text"  class="second searchInput" id="search-Second" placeholder="Tìm kiếm theo từ khoá:số đơn hàng,chủ sở hữu,số điện thoại..." title="Tìm kiếm theo từ khoá:số đơn hàng,chủ sở hữu,số điện thoại,..." v-on:keyup.enter="onEnterSearchAll()" >
+                    <input type="text"  class="second searchInput" id="search-Second" style="padding-left:35px !important" placeholder="Tìm kiếm theo từ khoá:số đơn hàng,chủ sở hữu,số điện thoại..." title="Tìm kiếm theo từ khoá:số đơn hàng,chủ sở hữu,số điện thoại,..." v-on:keyup.enter="onEnterSearchAll()" >
                 </div>
             </div>
              

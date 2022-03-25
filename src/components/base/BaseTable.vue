@@ -9,6 +9,7 @@
                   <th style="width:100px !important;" >Số đơn hàng</th>
                   <th style="width:95px !important" title="Trạng thái đơn hàng">TT đơn hàng</th>
                   <th class="status" style="width:150px !important">Trạng thái hồ sơ</th>
+                  <th class="status" style="width:150px !important">Loại hồ sơ</th>
                   <th style="width:132px !important" >Loại sản phẩm</th>
                   <th style="width:350px !important;" class="cerName">Tổ chức/Cá nhân</th>
                   <th style="width:160px !important">Người liên hệ</th>
@@ -18,12 +19,13 @@
                   <th style="width:150px !important">Số chứng thư</th>
                 </thead>
                 <tbody>
-                  <tr class="table-row" v-for="request in requests" :key="request.requestId" @dblclick="dblclickTableRow(request)" >
+                  <tr class="table-row" v-for="(request,index) in requests" :key="index" @dblclick="dblclickTableRow(request)"  >
                     <td class="check" ><input type="checkbox" class="check-s checks"  @click="checkChiled()"/></td>
                     <td class="date" style="width:134px !important;">{{ formatdate(request.createdDate)}} <br/><span style="font-size:10px;"> {{GetTimeInDate(request.createdDate)}}</span></td>
                     <td style="width:100px !important;">{{request.orderNo}}</td>
                     <td style="width:95px !important">{{fomatpaymentstate(request.paymentState)}}</td>
                     <td class="status" style="width:120px !important">{{formatrequestStatus(request.requestStatus)}}</td>
+                    <td style="width:120px !important">{{serviceType[index]}}</td>
                     <td style="width:132px !important">{{formatcertype(request.requestCertType)}}</td>
                     <td  class="cerName">{{request.esignCerName}}</td>
                     <td style="width:160px !important">{{request.buyerName}}</td>
@@ -70,6 +72,47 @@ export default ({
         status.style.color = "rgb(27, 86, 181)"
       }
     }
+
+
+
+    for (const request of this.requests) {
+      if(request.serviceId)
+      {
+      
+      var respond
+      axios.get(`https://localhost:44309/api/v1/requests/service/${request.serviceId}`)
+      .then((res)=>{
+      
+        respond = res.data
+         switch (respond) {
+        case 0:
+          this.serviceType.push("Tổ chức")
+          break;
+          
+        case 1:
+          this.serviceType.push("Cá nhân")
+          break;
+          
+        case 2:
+          this.serviceType.push("Cá nhân thuộc tổ chức")
+          break;
+          
+        default:
+          this.serviceType.push(" ")
+          break;
+        }
+      })
+     
+      }else{
+        this.serviceType.push(" ")
+        
+      }
+      
+    }
+  },
+  created(){
+    
+    
   },
   methods: {
     //checkchild
@@ -119,6 +162,8 @@ export default ({
       
       
     },
+    
+    
     //format trạng thái nộp bản cứng
     formatIsReceivedProfile(value)
     {
@@ -245,13 +290,14 @@ export default ({
     },
     //format date
     formatdate(value){
+      console.log(1)
       var date = new Date(value)
       var year = date.getFullYear()
       var month = date.getMonth() + 1
       if(month <10){
         month = "0" + month
       }
-      var day = date.getDay()
+      var day = date.getDate()
       if(day<10){
         day = "0" +day
       }
@@ -283,7 +329,9 @@ export default ({
     return {
       showFeatureState:0,
       detailRequest:null,
-      serviceState:0
+      serviceState:0,
+      serviceType:[],
+
     }
   }
 })
